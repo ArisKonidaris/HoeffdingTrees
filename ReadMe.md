@@ -76,7 +76,8 @@ after each such an action.
 We performed tests to examine the performance of the algorithm as the parallelism. We used a binary classification data
 set consisted of one million examples with thirty numerical (real valued) features. The data set is streamed through a 
 Kafka topic with that many partitions as the parallelism of the training procedure. This is done so that each thread 
-worker can read from one partition. Below are the figures that provide the test results for n_min = 400.
+worker can read from one partition. Below are the figures that provide the test results for n_min = 400, tau = 0.05 and
+delta = 1.0E-7.
 
 <p align="center">
   <img src="https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Accuracy_vs_Parallelism.png" width="400" />
@@ -91,6 +92,59 @@ doing before the coordinator issues the synchronization. This means that in the 
 <img src="https://render.githubusercontent.com/render/math?math=\frac{n_l}{k}\left(2k-1\right)=n_l\left(2-\frac{1}{k}\right)"> 
 are globally observed on a leaf before splitting is attempted. This leaves to reduction in the size of the tree that may 
 account to the loss of predictive performance.
+
+On the figure to the right we can se the duration of the training procedure as the number of concurrent workers 
+increases. A single threaded implementation takes about 28 seconds (the MOA implementation takes about 36 seconds for 
+the same data set). As we increase the number of worker threads from 2 to 9, we can see a boost to the execution 
+performance, with the duration dropping to 16.8 seconds with 7 worker threads. As increase the parallelism even further, 
+we can see a slight increase on the duration of the execution. When we finally reach 32 worker threads (not shown on 
+this figure), the execution time is up to 23 seconds. This is done because as the number of workers increases, their 
+utilization drops as they fit fewer data points to each leaf before sending a signal to the coordinator. Communication 
+becomes a bottleneck. 
+
+
+### Run the project
+
+In order to run a test you have to create a Kafka cluster (or on your local machine) beforehand. The application will 
+create the Kafka topic, that the data set is going to be streamed on, on its own. To run the test you have to specify 
+the following command line parameters:
+
+```
+String filepath: The absolute file path of the csv data set file.
+String topic_name: The name of the training data topic.
+String partitions/parallellism: The number of partitions for the topic. This will also be the parallelism of the test.
+String replication-factor: The replication factor for the training data topic.
+String kafka_path: The absolute path of the Apache Kafka bin folder.
+String boostrap-servers: The servers/broker of the Kafka cluster.
+String n_min: The n_min hyper parameter of the Hoeffding Tree.
+String tau: The tau hyper parameter of the Hoeffding Tree.
+String delta: The delta hyper parameter of the Hoeffding Tree.
+``` 
+
+All the above parameters must be provided in order for the test to run from the terminal. First, create the fat jar file
+by executing the following command at the HoeffdingTrees/ directory.
+
+```
+mvn -e package
+```
+
+Then run the test from the terminal via the command provided below. To run the test from an IDEA, or to run via the 
+command line without providing the arguments by hand, you have to define these default parameters to the 
+ht/DefaultTestSettings.scala (all the parameters) and ht/KafkaConstants.scala (the first four parameters) files. To run
+the test execute the command:
+
+```
+java -jar HoeffdingTrees/target/HoeffdingTrees-1.0-SNAPSHOT.jar \
+<data set csv file path> \
+<topic name> \
+<partitions/parallelism> \
+<replication factor> \
+<Apache Kafka bin folder path> \
+<Apache Kafka servers/brokers> \
+<n_min> \
+<tau> \
+<delta> \
+```
 
 ## Authors
 * **Konidaris Vissarion**

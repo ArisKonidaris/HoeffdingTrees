@@ -5,6 +5,7 @@ package ht.kafka
  */
 object KafkaConstants {
 
+  val DATA_TOPIC_NAME = "trainingData"
   val KAFKA_PATH = "/home/aris/software/kafka/bin/"
   val BOOTSTRAP_SERVER = "localhost:9092"
   val ZOOKEEPER_SERVER_PORT = "2182"
@@ -15,7 +16,6 @@ object KafkaConstants {
   val KAFKA_BROKER_4 = "localhost:9095"
   val KAFKA_BROKERS_LIST: String = KAFKA_BROKER_1 + "," + KAFKA_BROKER_2 + "," + KAFKA_BROKER_3 + "," + KAFKA_BROKER_4
 
-  val DATA_TOPIC_NAME = "trainingData"
   val DATA_KAFKA_BROKERS = "localhost:9092"
   val DATA_CLIENT_ID = "data_client_1"
 
