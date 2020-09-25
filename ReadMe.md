@@ -31,7 +31,7 @@ by using the deserialize method of the Hoeffding Tree.
  
 The training procedure of a simple, single threaded, Hoeffding tree can be seen in the following pseudocode.
 
-<img align="center" width="100" height="100" src="https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/HoeffdingTreePseudocode.png">
+<img align="center" width="579" height="429" src="https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/HoeffdingTreePseudocode.png">
 
 
 The above Algorithm  lists pseudo-code for inducing a Hoeffding tree from a labeled data stream. Line 1 starts out the 
