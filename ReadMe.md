@@ -77,7 +77,10 @@ set consisted of one million examples with thirty numerical (real valued) featur
 Kafka topic with that many partitions as the parallelism of the training procedure. This is done so that each thread 
 worker can read from one partition. Below are the figures that provide the test results for n_min = 400.
 
-![alt-text-1](https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Accuracy_vs_Parallelism.png "title-1") ![alt-text-2](https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Duration_vs_Parallelism.png "title-2")
+<p float="center">
+  <img src="https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Accuracy_vs_Parallelism.png" width="100" />
+  <img src="https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Duration_vs_Parallelism.png" width="100" /> 
+</p>
 
 ## Authors
 * **Konidaris Vissarion**
