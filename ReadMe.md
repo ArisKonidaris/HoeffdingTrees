@@ -8,6 +8,7 @@ SCHOOL OF ELECTRICAL & COMPUTER ENGINEERING
 
 Master course: ECE615
 
+
 ### Getting Started
 
 The Hoeffding Tree algorithm is a well-known classifier that can be trained on streaming labeled data. In reality, a 
@@ -27,6 +28,7 @@ String that can be stored in a simple text file. The same JSON String can be use
 by using the deserialize method of the Hoeffding Tree.
 * Provides the user with the ability to use many threads when training the tree for better performance.
  
+
 ### Concurrent implementation
  
 The training procedure of a simple, single threaded, Hoeffding tree can be seen in the following pseudocode.
@@ -68,11 +70,14 @@ workers are responsible for updating the sufficient statistics of the leaves in 
 responsible for combining the leaves and splitting them if necessary while ensuring that all the trees are exact copies 
 after each such an action. 
 
+
 ### Tests
 We performed tests to examine the performance of the algorithm as the parallelism. We used a binary classification data
 set consisted of one million examples with thirty numerical (real valued) features. The data set is streamed through a 
 Kafka topic with that many partitions as the parallelism of the training procedure. This is done so that each thread 
 worker can read from one partition. Below are the figures that provide the test results for n_min = 400.
+
+![alt-text-1](https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Accuracy_vs_Parallelism.png "title-1") ![alt-text-2](https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Duration_vs_Parallelism.png "title-2")
 
 ## Authors
 * **Konidaris Vissarion**
