@@ -17,7 +17,7 @@ Tree classifier on a widely used functional programming language, Scala. The cur
 Maven project library for training, making predictions and storing Hoeffding Trees, by using single or even multiple 
 threads. The project:
 
-* Provides a script for creating a dummy training data set for a classification problem.
+* Provides a script for creating a dummy training data set for a classification problem (HoeffdingTrees/data/genData.py file).
 * Contains Kafka clients for producing and consuming a training set.
 * Implements a Hoeffding Tree for multiclass classification of discrete and numerical features. Hash Map counters are 
 used in case of discrete features, and Gaussian distributions in case of numerical ones.
@@ -74,10 +74,11 @@ after each such an action.
 
 ### Tests
 We performed tests to examine the performance of the algorithm as the parallelism. We used a binary classification data
-set consisted of one million examples with thirty numerical (real valued) features. The data set is streamed through a 
-Kafka topic with that many partitions as the parallelism of the training procedure. This is done so that each thread 
-worker can read from one partition. Below are the figures that provide the test results for n_min = 400, tau = 0.05 and
-delta = 1.0E-7.
+set consisted of one million examples with thirty numerical (real valued) features (you can see a small example data set 
+inside the HoeffdingTrees/data folder along with the script to generate a classification data set). The data set is 
+streamed through a Kafka topic with that many partitions as the parallelism of the training procedure. This is done so 
+that each thread worker can read from one partition. Below are the figures that provide the test results for n_min = 400
+, tau = 0.05 and delta = 1.0E-7.
 
 <p align="center">
   <img src="https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Accuracy_vs_Parallelism.png" width="400" />
@@ -99,8 +100,8 @@ the same data set). As we increase the number of worker threads from 2 to 9, we 
 performance, with the duration dropping to 16.8 seconds with 7 worker threads. As increase the parallelism even further, 
 we can see a slight increase on the duration of the execution. When we finally reach 32 worker threads (not shown on 
 this figure), the execution time is up to 23 seconds. This is done because as the number of workers increases, their 
-utilization drops as they fit fewer data points to each leaf before sending a signal to the coordinator. Communication 
-becomes a bottleneck. 
+utilization drops as they fit fewer data points to each leaf before sending a signal to the coordinator 
+(a blocking operation). Thread synchronization and blocking becomes a bottleneck. 
 
 
 ### Run the project

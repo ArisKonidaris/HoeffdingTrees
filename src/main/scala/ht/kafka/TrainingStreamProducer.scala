@@ -3,6 +3,7 @@ package ht.kafka
 import java.io.{BufferedReader, File, FileReader}
 import java.util
 import java.util.Properties
+import org.slf4j.LoggerFactory
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import ht.POJOs.DataInstance

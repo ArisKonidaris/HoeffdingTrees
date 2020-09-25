@@ -2,6 +2,7 @@ package ht
 
 import java.io.{BufferedReader, IOException, InputStreamReader}
 import ht.kafka.{KafkaConstants, TrainingDataClient}
+import org.slf4j.LoggerFactory
 
 object Main {
 

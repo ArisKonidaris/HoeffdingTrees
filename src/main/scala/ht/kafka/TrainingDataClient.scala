@@ -1,5 +1,7 @@
 package ht.kafka
 
+import org.slf4j.LoggerFactory
+
 /**
  * A Kafka Client for writing training data to a Kafka topic.
  */
