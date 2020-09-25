@@ -78,8 +78,8 @@ Kafka topic with that many partitions as the parallelism of the training procedu
 worker can read from one partition. Below are the figures that provide the test results for n_min = 400.
 
 <p align="center">
-  <img src="https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Accuracy_vs_Parallelism.png" width="300" />
-  <img src="https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Duration_vs_Parallelism.png" width="300" /> 
+  <img src="https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Accuracy_vs_Parallelism.png" width="450" />
+  <img src="https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Duration_vs_Parallelism.png" width="450" /> 
 </p>
 
 ## Authors
