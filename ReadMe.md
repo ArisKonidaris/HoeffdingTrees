@@ -57,9 +57,10 @@ worker thread has a complete copy of the Hoeffding Tree and receives its own dat
 workers train their trees on their receiving stream by only updating the sufficient statistics of the leaves, without 
 any splitting permitted. Each time a worker has updated each leaf on its own tree for n_l / k times, where k is the 
 number of thread workers, it sends a signal to the hub/coordinator with the id of that leaf. The coordinator then 
-increments a counter for that leaf id. When a counter for a leaf reaches n_l, then synchronization needs to happen in 
+increments a counter for that leaf id. When a counter for a leaf reaches k, then synchronization needs to happen in 
 order to combine those parallel corresponding leaves with the same leaf id. All worker threads suspend and wait for the 
-synchronization to happen. The coordinator combines the corresponding leaves that triggered the synchronization by using
+synchronization to happen after they complete training on the last received data point before or during the issuing of 
+the synchronization. The coordinator combines the corresponding leaves that triggered the synchronization by using
 their unique ids. In the discrete features case, combining is simply done by adding the sufficient statistics counters 
 of those leaves. In the numerical features case, the Gaussian distributions of the attributes for each class are 
 combined. Then, the hub computes the splitting criterion function (information gain) G for each attribute and the 
@@ -81,6 +82,14 @@ worker can read from one partition. Below are the figures that provide the test 
   <img src="https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Accuracy_vs_Parallelism.png" width="400" />
   <img src="https://github.com/ArisKonidaris/HoeffdingTrees/blob/master/Duration_vs_Parallelism.png" width="400" /> 
 </p>
+
+On the figure to the left we can observe the predictive performance of the algorithm slowly degrades as the number of 
+concurrent workers increases. This may be due to the fact that fewer leaf splits are performed. This is the case because 
+each worker sends a signal to the hub after n_l / k data points are fitted into each leaf. The coordinator issues a 
+synchronization of the leaf when the number of signals reaches k. However, the workers need to finish what they were
+doing before the coordinator issues the synchronization. This means that in the worst case scenario, at most 
+$\frac{n_l}{k}\left(2k-1\right)=n_l\left(2-\frac{1}{k}\right)$ are globally observed on a leaf before splitting is 
+attempted. This leaves to reduction in the size of the tree that may account to the loss of predictive performance.
 
 ## Authors
 * **Konidaris Vissarion**
