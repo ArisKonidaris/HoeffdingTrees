@@ -88,8 +88,9 @@ concurrent workers increases. This may be due to the fact that fewer leaf splits
 each worker sends a signal to the hub after n_l / k data points are fitted into each leaf. The coordinator issues a 
 synchronization of the leaf when the number of signals reaches k. However, the workers need to finish what they were
 doing before the coordinator issues the synchronization. This means that in the worst case scenario, at most 
-$\frac{n_l}{k}\left(2k-1\right)=n_l\left(2-\frac{1}{k}\right)$ are globally observed on a leaf before splitting is 
-attempted. This leaves to reduction in the size of the tree that may account to the loss of predictive performance.
+<img src="https://render.githubusercontent.com/render/math?math=\frac{n_l}{k}\left(2k-1\right)=n_l\left(2-\frac{1}{k}\right)"> 
+are globally observed on a leaf before splitting is attempted. This leaves to reduction in the size of the tree that may 
+account to the loss of predictive performance.
 
 ## Authors
 * **Konidaris Vissarion**
