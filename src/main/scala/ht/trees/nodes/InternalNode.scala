@@ -4,7 +4,6 @@ import ht.math.Vector
 import ht.trees.serializable.nodes.{InternalNodeDescriptor, LeafNodeDescriptor, NodeDescriptor}
 
 import scala.collection.mutable
-import scala.collection.mutable.ListBuffer
 
 /**
  * A class representing an internal node in a Hoeffding tree.

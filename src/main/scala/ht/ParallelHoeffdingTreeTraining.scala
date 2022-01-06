@@ -31,9 +31,9 @@ object ParallelHoeffdingTreeTraining {
         try {
           args(0)
         } catch {
-          case _: Throwable => DefaultTestSettings.default_topic_name
+          case _: Throwable => DefaultTestSettings.defaultTopicName
         }
-      } else DefaultTestSettings.default_topic_name
+      } else DefaultTestSettings.defaultTopicName
     }
 
     // Forming the parallelism/partitions.
@@ -42,9 +42,9 @@ object ParallelHoeffdingTreeTraining {
         try {
           args(1).toInt
         } catch {
-          case _: Throwable => DefaultTestSettings.default_parallelism
+          case _: Throwable => DefaultTestSettings.defaultParallelism
         }
-      } else DefaultTestSettings.default_parallelism
+      } else DefaultTestSettings.defaultParallelism
     }
 
     // Forming the n_min hyper parameter of the Hoeffding Tree.
@@ -53,9 +53,9 @@ object ParallelHoeffdingTreeTraining {
         try {
           args(2).toInt
         } catch {
-          case _: Throwable => DefaultTestSettings.default_n_min
+          case _: Throwable => DefaultTestSettings.defaultNMin
         }
-      } else DefaultTestSettings.default_n_min
+      } else DefaultTestSettings.defaultNMin
     }
 
     // Forming the tau hyper parameter of the Hoeffding Tree.
@@ -64,9 +64,9 @@ object ParallelHoeffdingTreeTraining {
         try {
           args(8).toDouble
         } catch {
-          case _: Throwable => DefaultTestSettings.default_tau
+          case _: Throwable => DefaultTestSettings.defaultTau
         }
-      } else DefaultTestSettings.default_tau
+      } else DefaultTestSettings.defaultTau
     }
 
     // Forming the delta hyper parameter of the Hoeffding Tree.
@@ -75,9 +75,9 @@ object ParallelHoeffdingTreeTraining {
         try {
           args(9).toDouble
         } catch {
-          case _: Throwable => DefaultTestSettings.default_delta
+          case _: Throwable => DefaultTestSettings.defaultDelta
         }
-      } else DefaultTestSettings.default_delta
+      } else DefaultTestSettings.defaultDelta
     }
 
 

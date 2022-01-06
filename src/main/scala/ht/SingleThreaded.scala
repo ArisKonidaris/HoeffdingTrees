@@ -5,6 +5,7 @@ import ht.dataBuffers.DataSet
 import ht.math.{LabeledPoint, Point}
 import ht.trees.HoeffdingTree
 import moa.core.TimingUtils
+import java.io.PrintWriter
 
 import scala.collection.mutable.ListBuffer
 import scala.util.control.Breaks.{break, breakable}
@@ -39,9 +40,9 @@ object SingleThreaded {
         try {
           args(1).toInt
         } catch {
-          case _: Throwable => DefaultTestSettings.default_n_min
+          case _: Throwable => DefaultTestSettings.defaultNMin
         }
-      } else DefaultTestSettings.default_n_min
+      } else DefaultTestSettings.defaultNMin
     }
 
     // Forming the tau hyper parameter of the Hoeffding Tree.
@@ -50,9 +51,9 @@ object SingleThreaded {
         try {
           args(2).toDouble
         } catch {
-          case _: Throwable => DefaultTestSettings.default_tau
+          case _: Throwable => DefaultTestSettings.defaultTau
         }
-      } else DefaultTestSettings.default_tau
+      } else DefaultTestSettings.defaultTau
     }
 
     // Forming the delta hyper parameter of the Hoeffding Tree.
@@ -61,9 +62,9 @@ object SingleThreaded {
         try {
           args(3).toDouble
         } catch {
-          case _: Throwable => DefaultTestSettings.default_delta
+          case _: Throwable => DefaultTestSettings.defaultDelta
         }
-      } else DefaultTestSettings.default_delta
+      } else DefaultTestSettings.defaultDelta
     }
 
 
@@ -104,10 +105,8 @@ object SingleThreaded {
 
           // Train the Hoeffding Tree on the labeled data point steam.
           for (point <- trainingSet) {
-//          val t1: Long = System.currentTimeMillis()
             val t1 = TimingUtils.getNanoCPUTimeOfCurrentThread
             ht.fit(point)
-//          processTime += System.currentTimeMillis() - t1
             processTime += TimingUtils.getNanoCPUTimeOfCurrentThread - t1
           }
 
@@ -128,6 +127,9 @@ object SingleThreaded {
 
       stream.closeConsumer()
       println(ht)
+
+      if (DefaultTestSettings.storeTreeToFile)
+        new PrintWriter(DefaultTestSettings.storeFilepath) { write(ht.serialize.toJsonString); close() }
 
       // Prints.
       println("Single threaded test results ...")

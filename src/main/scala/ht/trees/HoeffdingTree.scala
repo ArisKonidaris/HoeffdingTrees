@@ -196,7 +196,8 @@ class HoeffdingTree(private var discrete: Boolean = false,
    * @return A String representation of the Hoeffding Tree.
    */
   override def toString: String = {
-    "\n\nTrained on " + dataPointsSeen + " data points" + "\n" +
+    "\n\n ################ Hoeffding Tree ################" + "\n" +
+      "Trained on " + dataPointsSeen + " data points" + "\n" +
       "Height : " + height + "\n" +
       "Number of Internal Nodes: " + numberOfInternalNodes + "\n" +
       "Number of Leaves: " + numberOfLeaves + "\n" +

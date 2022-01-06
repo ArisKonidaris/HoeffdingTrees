@@ -6,12 +6,15 @@ package ht
  */
 object DefaultTestSettings {
 
-  val default_filepath: String = "/home/aris/IdeaProjects/DataStream/LinearClassificationTrainingSet30_10^6.txt"
-  val default_topic_name: String = "trainingData"
-  val default_parallelism: Int = 7
-  val default_replication_factor: Int = 1
-  val default_n_min: Int = 400
-  val default_tau: Double = 0.05
-  val default_delta: Double = 1.0E-7D
+  val defaultFilepath: String = "/home/aris/IdeaProjects/DataStream/DummyDataSet_43f2c_mil_e1.txt"
+  val defaultTopicName: String = "trainingData"
+  val defaultParallelism: Int = 1 // 7
+  val defaultReplicationFactor: Int = 1
+  val defaultNMin: Int = 200 // 400
+  val defaultTau: Double = 0.05
+  val defaultDelta: Double = 1.0E-7D
+
+  val storeTreeToFile: Boolean = true
+  val storeFilepath: String = "/home/aris/Desktop/storedTree.txt"
 
 }

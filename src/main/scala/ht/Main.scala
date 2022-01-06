@@ -193,9 +193,9 @@ object Main {
         try {
           args(0)
         } catch {
-          case _: Throwable => DefaultTestSettings.default_filepath
+          case _: Throwable => DefaultTestSettings.defaultFilepath
         }
-      } else DefaultTestSettings.default_filepath
+      } else DefaultTestSettings.defaultFilepath
     }
     println("Data set file path: " + filepath)
 
@@ -205,9 +205,9 @@ object Main {
         try {
           args(1)
         } catch {
-          case _: Throwable => DefaultTestSettings.default_topic_name
+          case _: Throwable => DefaultTestSettings.defaultTopicName
         }
-      } else DefaultTestSettings.default_topic_name
+      } else DefaultTestSettings.defaultTopicName
     }
     println("Topic name: " + topic)
 
@@ -217,9 +217,9 @@ object Main {
         try {
           args(2).toInt
         } catch {
-          case _: Throwable => DefaultTestSettings.default_parallelism
+          case _: Throwable => DefaultTestSettings.defaultParallelism
         }
-      } else DefaultTestSettings.default_parallelism
+      } else DefaultTestSettings.defaultParallelism
     }
     println("partitions/parallelism: " + parallelism)
 
@@ -229,9 +229,9 @@ object Main {
         try {
           args(3).toInt
         } catch {
-          case _: Throwable => DefaultTestSettings.default_replication_factor
+          case _: Throwable => DefaultTestSettings.defaultReplicationFactor
         }
-      } else DefaultTestSettings.default_replication_factor
+      } else DefaultTestSettings.defaultReplicationFactor
     }
     println("replication_factor: " + replication_factor)
 
@@ -265,9 +265,9 @@ object Main {
         try {
           args(6).toInt
         } catch {
-          case _: Throwable => DefaultTestSettings.default_n_min
+          case _: Throwable => DefaultTestSettings.defaultNMin
         }
-      } else DefaultTestSettings.default_n_min
+      } else DefaultTestSettings.defaultNMin
     }
     println("n_min: " + n_min)
     println("n_min_local: " + n_min / parallelism)
@@ -278,9 +278,9 @@ object Main {
         try {
           args(7).toDouble
         } catch {
-          case _: Throwable => DefaultTestSettings.default_tau
+          case _: Throwable => DefaultTestSettings.defaultTau
         }
-      } else DefaultTestSettings.default_tau
+      } else DefaultTestSettings.defaultTau
     }
     println("tau: " + tau)
 
@@ -290,9 +290,9 @@ object Main {
         try {
           args(8).toDouble
         } catch {
-          case _: Throwable => DefaultTestSettings.default_delta
+          case _: Throwable => DefaultTestSettings.defaultDelta
         }
-      } else DefaultTestSettings.default_delta
+      } else DefaultTestSettings.defaultDelta
     }
     println("delta: " + delta)
 
